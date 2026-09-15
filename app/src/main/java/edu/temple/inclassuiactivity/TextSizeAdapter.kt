@@ -31,21 +31,12 @@ class TextSizeAdapter(private val context: Context, private val numbers: Array<I
         }
 
         textView.text = number.toString()
+        textView.textSize = 22f
         return textView
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val number = numbers[position]
-        val textView = if(convertView == null){
-            TextView(context)
-        }
-        else{
-            (convertView as TextView)
-        }
-
-        textView.text = number.toString()
-        textView.textSize = number.toFloat()
-        return textView
+        return (getView(position, convertView, parent) as TextView).apply{textSize = numbers[position].toFloat()}
     }
 
 }
